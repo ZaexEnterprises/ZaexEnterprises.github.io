@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Events</title>
+</head>
+<body>
+    <h1>JavaScript Event Handling</h1>
+    <p id="clickMessage">Click the button to trigger an event.</p>
+    <button onclick="showMessage()">Click Me!</button>
+
+    <p>Press any key to trigger the key press event.</p>
+    <p id="keyMessage"></p>
+
+    <script>
+        // Event handler for click event
+        function showMessage() {
+            document.getElementById("clickMessage").innerHTML = "Button clicked!";
+        }
+
+        // Event handler for key press event
+        document.addEventListener("keydown", function(event) {
+            document.getElementById("keyMessage").innerHTML = `You pressed the "${event.key}" key!`;
+        });
+    </script>
+</body>
+</html>

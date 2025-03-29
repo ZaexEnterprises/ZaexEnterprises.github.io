@@ -1,0 +1,25 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+const port = 3000;
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/webdev', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Define a Schema and Model
+const User = mongoose.model('User', new mongoose.Schema({
+  name: String,
+  email: String
+}));
+
+// Route to create a new user
+app.get('/add-user', (req, res) => {
+  const newUser = new User({ name: 'John Doe', email: 'john@example.com' });
+  newUser.save()
+    .then(() => res.send('User added to MongoDB'))
+    .catch((err) => res.send('Error: ' + err));
+});
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
